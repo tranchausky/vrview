@@ -1,41 +1,163 @@
+
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>VrView Chaucc</title>
+  </head>
+  <body>
+    <div
+      class="flex bg-white justify-center items-center flex-col h-screen gap-4"
+    >
+      <div class="absolute z-0 top-0 left-0 h-screen w-screen">
+        <div class="image-container w-full h-full"></div>
+      </div>
+      <div
+        class="flex z-10 bg-white/70 rounded-md p-4 justify-center items-center flex-col gap-4"
+      >
+        <div class="w-[90vw] md:w-[32rem]">
+          <label for="basic-url" class="text-grey-darker inline-block mb-2"
+            ><p
+              class="flex items-center gap-1 mt-2 font-sans text-md antialiased font-bold leading-normal text-neutral-950"
+            >
+              Put the Panorama 360° vid or img url.
+            </p></label
+          >
+          <div class="flex flex-wrap items-stretch w-full relative">
+            <div class="flex -mr-px">
+              <span
+                class="flex items-center leading-normal bg-neutral-950 px-6 font-medium text-neutral-200 rounded-md rounded-r-none border-2 h-12 border-r-0 border-neutral-950 px-3 whitespace-no-wrap"
+                >Link pic/view</span
+              >
+            </div>
+            <input
+              type="text"
+              id="urlInput"
+              placeholder="images.unsplash.com/photo-1590930298432-4567af25e674?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3"
+              class="flex-shrink flex-grow focus:outline-none flex-auto leading-normal w-px flex-1 border-2 h-12 border-neutral-950 rounded rounded-l-none px-3 relative"
+            />
+          </div>
+          <label for="basic-url" class="inline-block mb-2"
+            ><p
+              class="flex items-center gap-1 mt-2 font-sans text-sm antialiased font-normal leading-normal text-[#000000a1]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-4 h-4 -mt-px"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              Query-Params
+              ?hidemenu=false&viewindicator=true&autorotate=false&autorotatespeed=0.3
+            </p></label
+          >
+        </div>
 
-<head>
-  <title>VR view</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-  <div id="error" class="dialog">
-    <div class="wrap">
-      <h1 class="title">Error</h1>
-      <p class="message">An unknown error occurred.</p>
+        <div class="main-container flex justify-center items-center gap-4">
+          <button
+            onclick="updateImgUrl()"
+            class="group relative inline-flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 font-medium text-neutral-200"
+          >
+            <span>Photo</span>
+            <div class="relative ml-1 h-5 w-5 overflow-hidden">
+              <div
+                class="absolute transition-all duration-200 group-hover:-translate-y-5 group-hover:translate-x-4"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                >
+                  <path
+                    d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 -translate-x-4"
+                >
+                  <path
+                    d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </button>
+          <button
+            onclick="updateVidUrl()"
+            class="group relative inline-flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 font-medium text-neutral-200"
+          >
+            <span>Video</span>
+            <div class="relative ml-1 h-5 w-5 overflow-hidden">
+              <div
+                class="absolute transition-all duration-200 group-hover:-translate-y-5 group-hover:translate-x-4"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                >
+                  <path
+                    d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 -translate-x-4"
+                >
+                  <path
+                    d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div id="play-overlay">
-    <img src="images/ic_play_arrow_white_24dp.svg" />
-  </div>
-
-  <a id="watermark" href="http://g.co/vr/view" target="_blank">
-    <img src="images/ic_info_outline_black_24dp.svg" />
-  </a>
-
-  <script>
-    WebVRConfig = {
-      BUFFER_SCALE: 0.5,
-      TOUCH_PANNER_DISABLED: false
-    };
-  </script>
-
-  <script src="build/three.js"></script>
-  <script src="build/embed.js"></script>
-</body>
-
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"
+      integrity="sha512-uWKImujbh9CwNa8Eey5s8vlHDB4o1HhrVszkympkm5ciYTnUEQv3t4QHU02CUqPtdKTg62FsHo12x63q6u0wmg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+    <script src="assets/three.min.js"></script>
+    <script src="assets/panolens.min.js"></script>
+    <script src="assets/home_main.js"></script>
+  </body>
 </html>
